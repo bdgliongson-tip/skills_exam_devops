@@ -1,0 +1,15 @@
+---
+- name: Configure IPv6 on G1
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Configure IPv6 Address
+      ios_config:
+        parents: "interface GigabitEthernet1"
+        lines:
+          - description IPv6 Address
+          - ipv6 address 2001:fc4:acad:1::1/64
+          - ipv6 address fe80::1:1 link-local
+    
